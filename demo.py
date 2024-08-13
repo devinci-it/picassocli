@@ -214,6 +214,24 @@ def decorator_demo(text):
     decorated_italic()
     
     
+
+def demo_loader():
+    """
+    A function to demonstrate the use of the ProgressLoader class.
+    """
+    from picasso import ProgressLoader
+    import time
+    
+    header("ProgressLoader")
+    
+    
+    # Create a ProgressLoader instance
+    loader = ProgressLoader(message="Processing", num_chars=3)
+    with loader:
+        for i in range(1, 101):
+            time.sleep(0.1)
+    input("\nPress Enter to continue.")
+                
     
     
     
@@ -224,6 +242,7 @@ if __name__ == "__main__":
     demo_brightness_effects()
     demo_style_composer()
     demo_style_formatter()
+    demo_loader()
     
     
     decorator_demo("This is a decorated text.")
