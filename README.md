@@ -1,4 +1,4 @@
-# Picasso
+# PicassoCLI
 
 Picasso is a versatile Python module for styling text in terminal applications. It provides a set of tools for applying colors, text styles, and formatting to enhance text presentation in console outputs.
 
@@ -101,6 +101,42 @@ def decorator_demo(text):
 decorator_demo("This is a decorated text.")
 ```
 
+## Using `ProgressLoader`
+
+The `progress_loader` module provides a `ProgressLoader` class for displaying a customizable progress animation in the terminal. Here’s how you can use it:
+
+ 
+```python
+import time
+from picasso.progress_loader import ProgressLoader
+
+def long_running_task():
+    # Simulate a long-running task
+    time.sleep(10)
+    print("Task completed!")
+
+if __name__ == "__main__":
+    try:
+        # Customize the ProgressLoader parameters as needed
+        with ProgressLoader(
+            # Initial message displayed next to the animation
+            message="Processing", 
+            # Number of characters in the animation sequence
+            num_chars=4, 
+            # Time between updates of the animation
+            interval=0.3,
+            # Character used for the animation           
+            char=" @ ", 
+            # Color of the active character
+            color="#00ff00",        
+            # Background color of inactive characters
+            bg_color="#004400"      
+        ) as loader:
+            long_running_task()  # Run the long task while the loader shows progress
+
+    except KeyboardInterrupt:
+        print("\nOperation was interrupted.")
+```
 ## Contributing
 
 We welcome contributions to Picasso! If you'd like to contribute, please follow these guidelines:
