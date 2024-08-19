@@ -1,4 +1,5 @@
 # PicassoCLI
+![icon](assets/icon_banner_lght.svg)
 
 Picasso is a versatile Python module for styling text in terminal applications. It provides a set of tools for applying colors, text styles, and formatting to enhance text presentation in console outputs.
 
