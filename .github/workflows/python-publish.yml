@@ -1,0 +1,39 @@
+
+name: Deploy Python Package
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger deployment on version tag pushes (e.g., v1.0.0)
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.11.4
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11.4'
+
+    - name: Upgrade pip and install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools twine huefy
+
+    - name: Build the package
+      run: |
+        python setup.py check  # Optional: Validate the package
+        python setup.py sdist bdist_wheel  # Build the source distribution and wheel
+
+    - name: Upload to PyPI
+      env:
+        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      run: |
+        python -m twine upload --repository pypi dist/*
+
+    - name: Clean up build and dist directories
+      run: |
+        rm -rf build dist  # Remove build and dist directories
